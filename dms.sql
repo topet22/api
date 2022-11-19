@@ -35,15 +35,17 @@ CREATE TABLE `documents` (
 
 /*Table structure for table `user_account` */
 
-DROP TABLE IF EXISTS `user_account`;
+DROP TABLE IF EXISTS 'user_account';
 
-CREATE TABLE `user_account` (
-  `id` int(10) NOT NULL AUTO_INCREMENT,
-  `name` varchar(50) NOT NULL,
-  `email` varchar(50) NOT NULL,
-  `password` varchar(15) NOT NULL,
+USE 'dms'
+
+CREATE TABLE 'user_account' (
+  'id' INT(10) NOT NULL AUTO_INCREMENT,
+  'name' VARCHAR(50) NOT NULL,
+  'username' VARCHAR(50) NOT NULL,
+  'password' VARCHAR(15) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4;
+) ENGINE=INNODB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4;
 
 /*Data for the table `user_account` */
 

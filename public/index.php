@@ -48,6 +48,43 @@ $response->getBody()->write(json_encode(array("status"=>"error",
 $conn = null;
 return $response;
 }); 
+
+//endpoint user registration
+$app->post('/userreg', function (Request $request, Response $response, array $args)
+{
+    $data=json_decode($request->getBody());
+    $name =$data->name ;
+    $uname =$data->username ;
+    $pword = $data->password ;
+    //Database
+    $servername = "localhost";
+    $username = "root";
+    $password = "";
+    $dbname = "dms";
+    try {
+    
+    $conn = new PDO("mysql:host=$servername;dbname=$dbname",
+    
+    $username, $password);
+    
+    // set the PDO error mode to exception
+    $conn->setAttribute(PDO::ATTR_ERRMODE,
+    
+    PDO::ERRMODE_EXCEPTION);
+    
+    $sql = "INSERT INTO user_account (uname, username, passkey)
+    VALUES ('". $name ."','". $uname ."','". $pword ."')";
+    // use exec() because no results are returned
+    $conn->exec($sql);
+    $response->getBody()->write(json_encode(array("status"=>"success","data"=>null)));
+    
+    } catch(PDOException $e){
+    $response->getBody()->write(json_encode(array("status"=>"error",
+    "message"=>$e->getMessage())));
+    }
+    $conn = null;
+});
+
 //endpoint post print
 $app->post('/postPrint', function (Request $request, Response $response, array $args) {
 //Database
