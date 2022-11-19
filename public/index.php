@@ -5,49 +5,6 @@ use \Psr\Http\Message\ResponseInterface as Response;
 
 require '../src/vendor/autoload.php';
 $app = new \Slim\App;
-//endpoint get greeting
-$app->get('/getName/{fname}/{lname}', function (Request $request, Response
-
-$response, array $args) {
-$name = $args['fname']." ".$args['lname'];
-$response->getBody()->write("Hello, $name");
-return $response;
-
-});
-//endpoint post greeting
-$app->post('/postName', function (Request $request, Response $response, array $args)
-{
-$data=json_decode($request->getBody());
-$fname =$data->fname ;
-$lname =$data->lname ;
-//Database
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "demo";
-try {
-
-$conn = new PDO("mysql:host=$servername;dbname=$dbname",
-
-$username, $password);
-
-// set the PDO error mode to exception
-$conn->setAttribute(PDO::ATTR_ERRMODE,
-
-PDO::ERRMODE_EXCEPTION);
-
-$sql = "INSERT INTO names (fname, lname) VALUES ('". $fname ."','". $lname ."')";
-// use exec() because no results are returned
-$conn->exec($sql);
-$response->getBody()->write(json_encode(array("status"=>"success","data"=>null)));
-
-} catch(PDOException $e){
-$response->getBody()->write(json_encode(array("status"=>"error",
-"message"=>$e->getMessage())));
-}
-$conn = null;
-return $response;
-}); 
 
 //endpoint user registration
 $app->post('/userreg', function (Request $request, Response $response, array $args)
@@ -92,7 +49,7 @@ $app->post('/fileupload', function (Request $request, Response $response, array 
     $document_TITLE =$data->document_TITLE ;
     $document_TYPE =$data->document_TYPE ;
     $document_ORIGIN = $data->document_ORIGIN ;
-    $date_received = date("m-d-y");
+    $date_received = $data->date_received;
     $document_DESTINATION = $data->document_DESTINATION ;
     $tags = $data->tags ;
 
@@ -155,6 +112,7 @@ $app->post('/deletefileupload', function (Request $request, Response $response, 
     $conn = null;
 });
 
+//endpoint update file upload
 $app->post('/updatefileupload', function (Request $request, Response $response, array $args)
 {
     $data=json_decode($request->getBody());
@@ -192,41 +150,42 @@ $app->post('/updatefileupload', function (Request $request, Response $response, 
     $conn = null;
 });
 
-//endpoint search student
-$app->post('/searchName', function (Request $request, Response $response, array
-$args) {
+//endpoint search file upload
+$app->post('/searchfileupload', function (Request $request, Response $response, array
+		$args) {
 
-$data=json_decode($request->getBody());
-$id =$data->id;
-//Database
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "demo";
-// Create connection
-$conn = new mysqli($servername, $username, $password, $dbname);
-// Check connection
-if ($conn->connect_error) {
-die("Connection failed: " . $conn->connect_error);
-}
-$sql = "SELECT * FROM names where id='". $id ."'";
-$result = $conn->query($sql);
-if ($result->num_rows > 0) {
-$data=array();
-while($row = $result->fetch_assoc()) {
-array_push($data,array("id"=>$row["id"],"fname"=>$row["fname"] ,"lname"=>$row["lname"]));
+		$data=json_decode($request->getBody());
+		$id =$data->document_ID;
+		//Database
+		$servername = "localhost";
+		$username = "root";
+		$password = "";
+		$dbname = "dms";
+		// Create connection
+		$conn = new mysqli($servername, $username, $password, $dbname);
+		// Check connection
+		if ($conn->connect_error) {
+		die("Connection failed: " . $conn->connect_error);
+		}
+		$sql = "SELECT * FROM documents where document_ID='". $id ."'";
+		$result = $conn->query($sql);
+		if ($result->num_rows > 0) {
+		$data=array();
+		while($row = $result->fetch_assoc()) {
+			array_push($data,array("document_ID"=>$row["document_ID"],"document_TITLE"=>$row["document_TITLE"] ,"document_ORIGIN"=>$row["document_ORIGIN"],"date_received"=>$row["date_received"] ,"document_DESTINATION"=>$row["document_DESTINATION"],"tags"=>$row["tags"] ,));
 
-}
-$data_body=array("status"=>"success","data"=>$data);
-$response->getBody()->write(json_encode($data_body));
-} else {
+		}
+		$data_body=array("status"=>"success","data"=>$data);
+		$response->getBody()->write(json_encode($data_body));
+		} else {
 
-$response->getBody()->write(array("status"=>"success","data"=>null));
-}
-$conn->close();
+		$response->getBody()->write(array("status"=>"success","data"=>null));
+		}
+		$conn->close();
 
-return $response;
-});
+		return $response;
+		});
 
+        
 $app->run();
 ?>
