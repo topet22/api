@@ -85,36 +85,111 @@ $app->post('/userreg', function (Request $request, Response $response, array $ar
     $conn = null;
 });
 
-//endpoint post print
-$app->post('/postPrint', function (Request $request, Response $response, array $args) {
-//Database
+//endpoint create or upload file
+$app->post('/fileupload', function (Request $request, Response $response, array $args)
+{
+    $data=json_decode($request->getBody());
+    $document_TITLE =$data->document_TITLE ;
+    $document_TYPE =$data->document_TYPE ;
+    $document_ORIGIN = $data->document_ORIGIN ;
+    $date_received = date("m-d-y");
+    $document_DESTINATION = $data->document_DESTINATION ;
+    $tags = $data->tags ;
 
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "demo";
-// Create connection
-$conn = new mysqli($servername, $username, $password, $dbname);
-// Check connection
-if ($conn->connect_error) {
-die("Connection failed: " . $conn->connect_error);
-}
-$sql = "SELECT * FROM names";
-$result = $conn->query($sql);
-if ($result->num_rows > 0) {
-$data=array();
-while($row = $result->fetch_assoc()) {
-array_push($data,array("fname"=>$row["fname"]
+    //Database
+    $servername = "localhost";
+    $username = "root";
+    $password = "";
+    $dbname = "dms";
+    try {
+    
+    $conn = new PDO("mysql:host=$servername;dbname=$dbname",
+    
+    $username, $password);
+    
+    // set the PDO error mode to exception
+    $conn->setAttribute(PDO::ATTR_ERRMODE,
+    
+    PDO::ERRMODE_EXCEPTION);
+    
+    $sql = "INSERT INTO documents (document_TITLE, document_TYPE, document_ORIGIN, date_received, document_DESTINATION, tags)
+    VALUES ('". $document_TITLE ."','". $document_TYPE ."','". $document_ORIGIN ."','". $date_received ."','". $document_DESTINATION ."','". $tags ."')";
+    // use exec() because no results are returned
+    $conn->exec($sql);
+    $response->getBody()->write(json_encode(array("status"=>"success","data"=>null)));
+    
+    } catch(PDOException $e){
+    $response->getBody()->write(json_encode(array("status"=>"error",
+    "message"=>$e->getMessage())));
+    }
+    $conn = null;
+});
 
-,"lname"=>$row["lname"]));
-}
-$data_body=array("status"=>"success","data"=>$data);
-$response->getBody()->write(json_encode($data_body));
-} else {
-$response->getBody()->write(array("status"=>"success","data"=>null));
-}
-$conn->close();
-return $response;
+//endpoint delete file upload
+$app->post('/deletefileupload', function (Request $request, Response $response, array $args)
+{
+    $data=json_decode($request->getBody());
+    $id =$data->id ;
+
+    //Database
+    $servername = "localhost";
+    $username = "root";
+    $password = "";
+    $dbname = "dms";
+    try {
+    
+    $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
+    
+    // set the PDO error mode to exception
+    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    
+    $sql = "DELETE FROM documents where document_ID='". $id ."'";
+    // use exec() because no results are returned
+    $conn->exec($sql);
+    $response->getBody()->write(json_encode(array("status"=>"success","data"=>null)));
+    
+    } catch(PDOException $e){
+    $response->getBody()->write(json_encode(array("status"=>"error",
+    "message"=>$e->getMessage())));
+    }
+    $conn = null;
+});
+
+$app->post('/updatefileupload', function (Request $request, Response $response, array $args)
+{
+    $data=json_decode($request->getBody());
+    $id =$data->id ;
+    $document_TITLE =$data->document_TITLE ;
+    $document_TYPE =$data->document_TYPE ;
+    $document_ORIGIN = $data->document_ORIGIN ;
+    $date_received = date("m-d-y");
+    $document_DESTINATION = $data->document_DESTINATION ;
+    $tags = $data->tags ;
+
+    //Database
+    $servername = "localhost";
+    $username = "root";
+    $password = "";
+    $dbname = "dms";
+    try {
+    
+    $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
+    
+    // set the PDO error mode to exception
+    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    
+    
+
+    $sql = "UPDATE documents set document_TITLE='". $document_TITLE ."', document_TYPE='". $document_TYPE ."', document_ORIGIN='". $document_ORIGIN ."', document_DESTINATION='". $document_DESTINATION ."', tags='". $tags ."' where document_id='". $id ."'";
+    // use exec() because no results are returned
+    $conn->exec($sql);
+    $response->getBody()->write(json_encode(array("status"=>"success","data"=>null)));
+    
+    } catch(PDOException $e){
+    $response->getBody()->write(json_encode(array("status"=>"error",
+    "message"=>$e->getMessage())));
+    }
+    $conn = null;
 });
 
 //endpoint search student
@@ -152,67 +227,6 @@ $conn->close();
 
 return $response;
 });
-//endpoint update student
-$app->post('/updateName', function (Request $request, Response $response, array
-$args) {
-$data=json_decode($request->getBody());
-$id =$data->id ;
-$fname =$data->fname ;
-$lname =$data->lname ;
-//Database
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "demo";
-try {
-$conn = new
 
-PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
-
-// set the PDO error mode to exception
-$conn->setAttribute(PDO::ATTR_ERRMODE,
-
-PDO::ERRMODE_EXCEPTION);
-
-$sql = "UPDATE names set fname='". $fname ."', lname='".
-
-$lname ."' where id='". $id ."'";
-
-// use exec() because no results are returned
-$conn->exec($sql);
-$response->getBody()->write(json_encode(array("status"=>"success","data"=>null)));
-} catch(PDOException $e){
-$response->getBody()->write(json_encode(array("status"=>"error","message"=>$e->getMessage())));
-}
-$conn = null;
-
-return $response;
-});
-//endpoint delete student
-$app->post('/deleteName', function (Request $request, Response $response, array
-$args) {
-
-$data=json_decode($request->getBody());
-$id =$data->id;
-//Database
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "demo";
-// Create connection
-$conn = new mysqli($servername, $username, $password, $dbname);
-// Check connection
-if ($conn->connect_error) {
-die("Connection failed: " . $conn->connect_error);
-}
-$sql = "DELETE FROM names where id='". $id ."'";
-if ($conn->query($sql) === TRUE) {
-$response->getBody()->write(json_encode(array("status"=>"success","data"=>null)));
-
-}
-$conn->close();
-
-return $response;
-});
 $app->run();
 ?>
