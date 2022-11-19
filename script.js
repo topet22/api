@@ -68,4 +68,43 @@ $("#delete").click(function(){
 
 	});
 	});
+
+    $('#password, #confirm_password').on('keyup', function () {
+		$('#butsave').prop('disabled',true);
+		if (($('#password').val() == $('#confirm_password').val()) && $('#password').val() != "") {
+		  $('#message').html('Matching').css('color', 'green');
+		  $('#butsave').prop('disabled',false);
+		  
+		} else 
+		  $('#message').html('Not Matching').css('color', 'red');		  
+	  });
+
+      $("#butsave").click(function(){
+		var name=$("#name").get(0).value;
+		var username=$("#username").get(0).value;
+        var password=$("#password").get(0).value;
+		$.post("http://www.localhost/api/public/userreg",
+				JSON.stringify({
+				name: name,
+				username: username,
+                password: password
+				}),
+			function(data,status){
+			alert("Data: " + data + "\nStatus: " + status);
+		});
+	});
+	
 });
+
+function checkUsername() { //Register JS
+    
+	jQuery.ajax({
+	url: "php/usernamevalidation.php",
+	data:'username='+$("#username").val(),
+	type: "POST",
+	success:function(data){
+		$("#check-username").html(data);
+	},
+	error:function (){}
+	});
+}

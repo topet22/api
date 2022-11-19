@@ -12,24 +12,27 @@ MySQL - 10.4.21-MariaDB : Database - dms
 /*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
-CREATE DATABASE /*!32312 IF NOT EXISTS*/`dms` /*!40100 DEFAULT CHARACTER SET utf8mb4 */;
+CREATE DATABASE /*!32312 IF NOT EXISTS*/'dms' /*!40100 DEFAULT CHARACTER SET utf8mb4 */;
 
-USE `dms`;
+USE 'dms'
 
 /*Table structure for table `documents` */
 
-DROP TABLE IF EXISTS `documents`;
+DROP TABLE IF EXISTS 'documents';
 
-CREATE TABLE `documents` (
-  `document_id` int(20) NOT NULL AUTO_INCREMENT,
-  `title` varchar(50) DEFAULT NULL,
-  `type` varchar(50) DEFAULT NULL,
-  `origin` varchar(100) DEFAULT NULL,
-  `date_received` datetime DEFAULT NULL,
-  `destination` varchar(100) DEFAULT NULL,
-  `tags` varchar(200) DEFAULT NULL,
-  PRIMARY KEY (`document_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+USE `dms`;
+
+CREATE TABLE `documents` (  
+  `document_ID` INT(20) NOT NULL AUTO_INCREMENT,
+  `document_TITLE` VARCHAR(255),
+  `document_TYPE` VARCHAR(255),
+  `document_ORIGIN` VARCHAR(255),
+  `date_received` DATETIME,
+  `document_DESTINATION` VARCHAR(255),
+  `tags` VARCHAR(255),
+  `document_FILE` VARCHAR(255),
+  PRIMARY KEY (`document_ID`) 
+);
 
 /*Data for the table `documents` */
 
@@ -41,9 +44,9 @@ USE 'dms'
 
 CREATE TABLE 'user_account' (
   'id' INT(10) NOT NULL AUTO_INCREMENT,
-  'name' VARCHAR(50) NOT NULL,
+  'uname' VARCHAR(50) NOT NULL,
   'username' VARCHAR(50) NOT NULL,
-  'password' VARCHAR(15) NOT NULL,
+  'passkey' VARCHAR(15) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=INNODB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4;
 
