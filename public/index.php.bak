@@ -43,57 +43,6 @@ $app->post('/userreg', function (Request $request, Response $response, array $ar
     $conn = null;
 });
 
-
-
-// Endpoint for login user
-$app->post('/loginUser', function (Request $request, Response $response, array $args)
-    {
-        session_start();
-
-        $data=json_decode($request->getBody());
-        $email =$data->email ;
-        $password =$data->password ;
-
-        //Database
-        $servername = "localhost";
-        $username = "root";
-        $dbpassword = "";
-        $dbname = "dms";
-        try
-        {
-            $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $dbpassword);
-            
-            // set the PDO error mode to exception
-            $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-
-            $stmt = $conn -> prepare ("SELECT * FROM user_account WHERE email =? AND password =?");
-            $stmt -> execute( array($email, $password));
-            $row = $stmt -> rowCount();
-
-            if($row > 0)
-            {
-                $_SESSION["email"] = $email;
-                echo ("Login successful");            
-                //Redirect user into dashboard page
-                header("Location:----");
-            }
-
-            else
-            {
-                echo ("Login failed!! : Incorrect email or password.");      
-            }       
-        } 
-
-        catch(PDOException $e)
-        {
-            $response->getBody()->write(json_encode(array("status"=>"error", "message"=>$e->getMessage())));
-        }  
-        $con = null;
-    });
-
-
-
-
 //endpoint create or upload file
 $app->post('/fileupload', function (Request $request, Response $response, array $args)
 {
