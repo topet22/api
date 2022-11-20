@@ -6,7 +6,6 @@ use \Psr\Http\Message\ResponseInterface as Response;
 require '../src/vendor/autoload.php';
 $app = new \Slim\App;
 
-//tangina
 //endpoint user registration
 $app->post('/userreg', function (Request $request, Response $response, array $args)
 {
