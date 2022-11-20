@@ -51,8 +51,8 @@ $app->post('/loginUser', function (Request $request, Response $response, array $
         session_start();
 
         $data=json_decode($request->getBody());
-        $email =$data->email ;
-        $password =$data->password ;
+        $uname =$data->email ;
+        $passkey =$data->passkey ;
 
         //Database
         $servername = "localhost";
@@ -66,13 +66,13 @@ $app->post('/loginUser', function (Request $request, Response $response, array $
             // set the PDO error mode to exception
             $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-            $stmt = $conn -> prepare ("SELECT * FROM user_account WHERE email =? AND password =?");
+            $stmt = $conn -> prepare ("SELECT * FROM user_account WHERE uname = '". $uname ."' AND passkey = '". $passkey ."'");
             $stmt -> execute( array($email, $password));
             $row = $stmt -> rowCount();
 
             if($row > 0)
             {
-                $_SESSION["email"] = $email;
+                $_SESSION["uname"] = $uname;
                 echo ("Login successful");            
                 //Redirect user into dashboard page
                 header("Location:----");
@@ -97,6 +97,8 @@ $app->post('/loginUser', function (Request $request, Response $response, array $
 //endpoint create or upload file
 $app->post('/fileupload', function (Request $request, Response $response, array $args)
 {
+    session_start();
+    
     $data=json_decode($request->getBody());
     $document_TITLE =$data->document_TITLE ;
     $document_TYPE =$data->document_TYPE ;
@@ -137,6 +139,7 @@ $app->post('/fileupload', function (Request $request, Response $response, array 
 //endpoint delete file upload
 $app->post('/deletefileupload', function (Request $request, Response $response, array $args)
 {
+    session_start();
     $data=json_decode($request->getBody());
     $id =$data->id ;
 
@@ -167,6 +170,7 @@ $app->post('/deletefileupload', function (Request $request, Response $response, 
 //endpoint update file upload
 $app->post('/updatefileupload', function (Request $request, Response $response, array $args)
 {
+    session_start();
     $data=json_decode($request->getBody());
     $id =$data->id ;
     $document_TITLE =$data->document_TITLE ;
@@ -206,6 +210,7 @@ $app->post('/updatefileupload', function (Request $request, Response $response, 
 $app->post('/searchfileupload', function (Request $request, Response $response, array
 		$args) {
 
+        session_start();
 		$data=json_decode($request->getBody());
 		$id =$data->document_ID;
 		//Database
@@ -238,6 +243,11 @@ $app->post('/searchfileupload', function (Request $request, Response $response, 
 		return $response;
 		});
 
+        $app->post('/testfileupload', function (Request $request, Response $response, array
+		$args) {
+
+                
+        });
         
 $app->run();
 ?>
