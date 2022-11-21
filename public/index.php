@@ -52,7 +52,7 @@ $app->post('/loginUser', function (Request $request, Response $response, array $
         session_start();
 
         $data=json_decode($request->getBody());
-        $uname =$data->email ;
+        $uname =$data->uname ;
         $passkey =$data->passkey ;
 
         //Database
@@ -68,7 +68,7 @@ $app->post('/loginUser', function (Request $request, Response $response, array $
             $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
             $stmt = $conn -> prepare ("SELECT * FROM user_account WHERE uname = '". $uname ."' AND passkey = '". $passkey ."'");
-            $stmt -> execute( array($email, $password));
+            $stmt -> execute( array($uname, $passkey));
             $row = $stmt -> rowCount();
 
             if($row > 0)
@@ -142,7 +142,7 @@ $app->post('/deletefileupload', function (Request $request, Response $response, 
 {
     session_start();
     $data=json_decode($request->getBody());
-    $id =$data->id ;
+    $document_ID =$data->document_ID ;
 
     //Database
     $servername = "localhost";
@@ -173,7 +173,7 @@ $app->post('/updatefileupload', function (Request $request, Response $response, 
 {
     session_start();
     $data=json_decode($request->getBody());
-    $id =$data->id ;
+    $document_ID =$data->document_ID ;
     $document_TITLE =$data->document_TITLE ;
     $document_TYPE =$data->document_TYPE ;
     $document_ORIGIN = $data->document_ORIGIN ;
@@ -195,7 +195,7 @@ $app->post('/updatefileupload', function (Request $request, Response $response, 
     
     
 
-    $sql = "UPDATE documents set document_TITLE='". $document_TITLE ."', document_TYPE='". $document_TYPE ."', document_ORIGIN='". $document_ORIGIN ."', document_DESTINATION='". $document_DESTINATION ."', tags='". $tags ."' where document_id='". $id ."'";
+    $sql = "UPDATE documents set document_TITLE='". $document_TITLE ."', document_TYPE='". $document_TYPE ."', document_ORIGIN='". $document_ORIGIN ."', document_DESTINATION='". $document_DESTINATION ."', tags='". $tags ."' where document_id='". $document_ID ."'";
     // use exec() because no results are returned
     $conn->exec($sql);
     $response->getBody()->write(json_encode(array("status"=>"success","data"=>null)));
@@ -213,7 +213,7 @@ $app->post('/searchfileupload', function (Request $request, Response $response, 
 
         session_start();
 		$data=json_decode($request->getBody());
-		$id =$data->document_ID;
+		$document_ID =$data->document_ID;
 		//Database
 		$servername = "localhost";
 		$username = "root";
@@ -225,7 +225,7 @@ $app->post('/searchfileupload', function (Request $request, Response $response, 
 		if ($conn->connect_error) {
 		die("Connection failed: " . $conn->connect_error);
 		}
-		$sql = "SELECT * FROM documents where document_ID='". $id ."'";
+		$sql = "SELECT * FROM documents where document_ID='". $document_ID ."'";
 		$result = $conn->query($sql);
 		if ($result->num_rows > 0) {
 		$data=array();
