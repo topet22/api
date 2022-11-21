@@ -89,7 +89,7 @@ $(document).ready(function(){
     });
     });
 
-    //Delete File Upload
+    //Delete File Uploads
     $("#delete").click(function(){
         $.post("http://localhost/api/public/deletefileupload",
         JSON.stringify({
