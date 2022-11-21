@@ -91,7 +91,7 @@ $(document).ready(function(){
 
     //Delete File Upload
     $("#delete").click(function(){
-        $.post("http://localhost/api/public/deleteName",
+        $.post("http://localhost/api/public/deletefileupload",
         JSON.stringify({
         document_ID:document_ID
         }),
