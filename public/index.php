@@ -92,9 +92,6 @@ $app->post('/loginUser', function (Request $request, Response $response, array $
         $con = null;
     });
 
-
-
-
 //endpoint create or upload file
 $app->post('/fileupload', function (Request $request, Response $response, array $args)
 {

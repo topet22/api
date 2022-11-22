@@ -91,7 +91,6 @@ $(document).ready(function(){
 
     //Delete File Uploads
     $("#delete").click(function(){
-		document_ID=prompt("Enter Name ID");
         $.post("http://localhost/api/public/deletefileupload",
         JSON.stringify({
         document_ID:document_ID
@@ -111,11 +110,22 @@ $(document).ready(function(){
 			var row="";
 			for(var i=0;i<json.data.length;i++){
 			
-			row=row+"<tr><td>"+json.data[i].document_ID+"</td><td>"+json.data[i].document_TITLE+"</td><td>"+json.data[i].document_TYPE+"</td><td>"+json.data[i].document_ORIGIN+"</td><td>"+json.data[i].date_received+"</td><td>"+json.data[i].document_DESTINATION+"</td><td>"+json.data[i].tags+"</td></tr>";
+			row=row+"<tr><td>"+json.data[i].document_ID+"</td><td>"+json.data[i].document_TITLE+"</td><td>"+json.data[i].document_TYPE+"</td><td>"+json.data[i].document_ORIGIN+"</td><td>"+json.data[i].date_received+"</td><td>"+json.data[i].document_DESTINATION+"</td><td>"+json.data[i].tags+"</td><td>"+
+			"<button id="+json.data[i].document_ID+" class=gotoupdate>Edit</button>"+
+			"</td><td>"+
+			"<button id="+json.data[i].document_ID+" class=delete>Delete</button></td></tr>"
 			
 			}
 			$("#data").get(0).innerHTML=row;
 			});
+			});
+
+			$("#gotoadd").click(function(){
+				window.location.href = "AddDocument.html";
+			});
+
+			$("#gotoupdate").click(function(){
+				window.location.href = "UpdateDocument.html";
 			});
 });
 
