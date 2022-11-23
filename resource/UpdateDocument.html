@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+	<head>
+	<title>API DEMO</title>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<script type="text/javascript" src="script.js"></script>
+	</head>
+	<body>
+<h2>ADD</h2>
+	<form enctype="multipart/form-data" method="post" id="add">
+		<label for="document_ID">Document ID</label><br>
+		<input type="text" id="document_ID"><br>
+
+		<label for="document_TITLE">Document TITLE</label><br>
+		<input type="text" id="document_TITLE" name="document_TITLE"><br>
+
+		<label for="document_TYPE">document_TYPE</label><br>
+        <select id="document_TYPE">
+			<option  value = '--------'>----SELECT HERE---</option>
+            <option  value = 'PDF'>PDF</option>
+            <option  value = 'DOC/DOCX'>DOC/DOCX</option>
+            <option  value = 'XLSX'>XLSX</option>
+            <option  value = 'TXT'>TXT</option>
+        </select><br>
+        <label for="document_ORIGIN">document_ORIGIN</label><br>
+		<input type="text" id="document_ORIGIN" name="document_ORIGIN"><br><br>
+        <label for="date_received">date_received</label><br>
+		<input type="date" id="date_received"><br>
+		<label for="document_DESTINATION">document_DESTINATION</label><br>
+		<input type="text" id="document_DESTINATION"><br><br>
+        <label for="tags">Tags:</label><br>
+		<input type="text" id="tags"><br>
+
+		<!--<label for="document_FILE">document_FILE:</label><br>
+		<input type="file" id="document_FILE" name="document_FILE"><br>-->
+        
+        <!--Buttons-->
+		<input type="button" id="save" value="Save">&nbsp;
+		<input type="button" id="update" value="Update">&nbsp;
+		<input type="button" id="display" value="Display">&nbsp;
+		<input type="button" id="search" value="Search">&nbsp;
+		<input type="button" id="delete" value="delete">
+	</form>
+	</body> 
+</html>

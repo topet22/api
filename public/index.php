@@ -134,6 +134,68 @@ $app->post('/fileupload', function (Request $request, Response $response, array 
     $conn = null;
 });
 
+$app->post('/docfileupload', function (Request $request, Response $response, array $args)
+{
+    $servername = "localhost";
+	$username = "root";
+	$password = "";
+	$db="dms";
+	$conn = mysqli_connect($servername, $username, $password,$db);
+
+
+
+	/* Get the name of the uploaded file */
+	$document_TITLE = $_POST['document_TITLE'];
+	$filename = $_FILES['document_FILE']['name'];
+
+	
+	
+	$true = 1;
+	$false = 0;
+
+	/* Choose where to save the uploaded file */
+	$location = "../uploads/";
+
+	$allowTypes = array('pdf'); 
+
+
+
+	  // File path config
+	  
+	  $temp = explode(".", $_FILES["document_FILE"]["name"]);
+	  $newfilename = $document_TITLE . '.' . end($temp);
+	  $targetFilePath = $location . $newfilename; 
+	  $fileType = pathinfo($targetFilePath, PATHINFO_EXTENSION); 
+	  
+	  
+
+	  $uploadStatus = 0; 
+	  if(!empty($_FILES["document_FILE"]["name"])){ 
+		// Allow certain file formats to upload 
+		if(in_array($fileType, $allowTypes)){ 
+			$uploadStatus = 1; 
+		}
+		else
+		{ 
+			$uploadStatus = 0; 
+			echo $false;
+		} 
+		} 
+
+		$sql = "UPDATE documents set document_FILE = '". $targetFilePath ."' where document_TITLE='". $document_TITLE ."'";	
+		
+if($uploadStatus == 1){	
+		if (mysqli_query($conn, $sql)) {
+			move_uploaded_file($_FILES["document_FILE"]["tmp_name"], $targetFilePath);
+			echo $true;
+		} 
+		else {
+			echo $false;
+		}  
+		mysqli_close($conn);
+	} 
+});
+
 //endpoint delete file upload
 $app->post('/deletefileupload', function (Request $request, Response $response, array $args)
 {
@@ -265,7 +327,7 @@ $app->post('/searchfileupload', function (Request $request, Response $response, 
         if ($result->num_rows > 0) {
             $data=array();
             while($row = $result->fetch_assoc()) {
-                array_push($data,array("document_ID"=>$row["document_ID"],"document_TITLE"=>$row["document_TITLE"],"document_TYPE"=>$row["document_TYPE"] ,"document_ORIGIN"=>$row["document_ORIGIN"],"date_received"=>$row["date_received"] ,"document_DESTINATION"=>$row["document_DESTINATION"],"tags"=>$row["tags"] ,));
+                array_push($data,array("document_ID"=>$row["document_ID"],"document_TITLE"=>$row["document_TITLE"],"document_TYPE"=>$row["document_TYPE"] ,"document_ORIGIN"=>$row["document_ORIGIN"],"date_received"=>$row["date_received"] ,"document_DESTINATION"=>$row["document_DESTINATION"],"tags"=>$row["tags"] ,"document_FILE"=>$row["document_FILE"] ));
     
             }
             $data_body=array("status"=>"success","data"=>$data);
