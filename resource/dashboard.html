@@ -10,6 +10,8 @@
         <link href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css" rel="stylesheet" />
         <link href="css/styles.css" rel="stylesheet" />
         <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script type="text/javascript" src="dashboard.js"></script>
     </head>
     <body class="sb-nav-fixed">
         <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
@@ -58,7 +60,7 @@
                         </ol>
                         <div class="card mb-4">
                             <div class="card-body">
-                                <a href="#" class="btn btn-secondary" role="button" aria-pressed="true">Display</a>
+                                <a href="UpdateDocument.html" class="btn btn-secondary" role="button" aria-pressed="true">UPDATE FILE</a>
                                 <a href="AddDocument.html" class="btn btn-primary" role="button" aria-pressed="true">ADD FILE</a>
                             </div>
                         </div>
@@ -79,7 +81,6 @@
                                             <th>document_DESTINATION</th>
                                             <th>tags</th>
                                             <th>document_FILE</th>
-                                            <th>ACTIONS</th>
                                         </tr>
                                     </thead>
                                     <tbody id="data">

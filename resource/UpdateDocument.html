@@ -4,7 +4,7 @@
         <meta charset="utf-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-        <title>Document Tracking System - Add File</title>
+        <title>Document Tracking System - Update Document</title>
         <link href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css" rel="stylesheet" />
         <link href="css/styles.css" rel="stylesheet" />
         <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
@@ -51,15 +51,20 @@
             <div id="layoutSidenav_content">
                 <main>
                     <div class="container-fluid px-4">
-                        <h1 class="mt-4">ADD DOCUMENT</h1>
+                        <h1 class="mt-4">UPDATE DOCUMENT</h1>
                         <ol class="breadcrumb mb-4">
                             <li class="breadcrumb-item"><a href="dashboard.html">Dashboard</a></li>
-                            <li class="breadcrumb-item active">Add Documents</li>
+                            <li class="breadcrumb-item active">Update Document</li>
                         </ol>
                         <div class="card mb-4">
                             <div class="card-body">
-                                <form enctype="multipart/form-data" method="post" id="add">
+                                <form enctype="multipart/form-data" method="post" id="update">
                                   <div class="row">
+                                    <div class="col-3">
+                                        <label for="document_ID">Document ID</label><br>
+                                      <input type="text" class="form-control" id="document_ID" name="document_ID">
+                                    </div>
+
                                     <div class="col-6">
                                         <label for="document_TITLE">Document TITLE</label>
                                       <input type="text" class="form-control" id="document_TITLE" name="document_TITLE">
@@ -102,14 +107,18 @@
                                     <label for="document_FILE">document_FILE:</label>
                                     <input type="file" class="form-control-file" id="document_FILE" name="document_FILE">
                                   </div>
+
                                 </div>
                                 </div>
                                 </div>
-                                
                                 <br>
-                                <a class="btn btn-danger" href="dashboard.html" role="button">BACK</a>&nbsp;&nbsp;
-                                <input class="btn btn-primary" type="submit" id="save" value="SAVE">
-                            </form>
+                                <a class="btn btn-secondary" href="dashboard.html" role="button">Back</a>&nbsp;&nbsp;
+                                <input class="btn btn-success" type="submit" id="update" value="Update">&nbsp;&nbsp;
+                                <input class="btn btn-info" type="button" id="search" value="Search">&nbsp;&nbsp;
+                                <input class="btn btn-danger" type="button" id="delete" value="Delete">
+                                </form>
+
+
                             </div>
                         </div>
                 </main>
