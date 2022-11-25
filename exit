@@ -1,0 +1,234 @@
+[33mcommit 92d3ba764af3aa6a37f71fb380526f9833d13d93[m[33m ([m[1;36mHEAD -> [m[1;32mmaster[m[33m)[m
+Author: ericson <nulltrades7@gmail.com>
+Date:   Fri Nov 25 14:10:32 2022 +0800
+
+    security changes
+
+[33mcommit 73a6446df41be21a3df5a8401c8c7237428ba966[m
+Author: ned-rev <denverordinante@gmail.com>
+Date:   Fri Nov 25 01:12:06 2022 +0800
+
+    integration
+
+[33mcommit 2f61e836dde4ab926cdc4bb7ab306cddfa839284[m
+Author: ned-rev <denverordinante@gmail.com>
+Date:   Fri Nov 25 01:10:18 2022 +0800
+
+    declutter
+
+[33mcommit ad84ed40094dadeedcd690157b40a9dfbe9fb14c[m
+Author: johnbalas04 <balasjohn1@gmail.com>
+Date:   Thu Nov 24 22:34:03 2022 +0800
+
+    front-end update
+
+[33mcommit 6b42070aee8c7427d403612d2a36781eecc2bb80[m
+Author: johnbalas04 <balasjohn1@gmail.com>
+Date:   Thu Nov 24 22:25:14 2022 +0800
+
+    front-end update
+
+[33mcommit cdabe28ffe98a34925116ac9d4692311885fbfa9[m
+Author: ned-rev <denverordinante@gmail.com>
+Date:   Wed Nov 23 22:11:18 2022 +0800
+
+    upload directory
+
+[33mcommit 50e54872e010516b7a9f44a65103cccaac82a615[m
+Author: ned-rev <denverordinante@gmail.com>
+Date:   Wed Nov 23 22:09:48 2022 +0800
+
+    updates
+
+[33mcommit 0711ea3ee0b2d953534257df101d92fb3178c3f6[m
+Author: ned-rev <denverordinante@gmail.com>
+Date:   Wed Nov 23 12:08:20 2022 +0800
+
+    updates
+
+[33mcommit e35586e038f52b62e2489e3cbf97005461cc886b[m
+Author: ned-rev <denverordinante@gmail.com>
+Date:   Wed Nov 23 12:05:47 2022 +0800
+
+    updates
+
+[33mcommit f21e0a4a82fbf3d7df6217f903638ff7ef397932[m
+Author: ned-rev <denverordinante@gmail.com>
+Date:   Wed Nov 23 00:43:18 2022 +0800
+
+    updates
+
+[33mcommit 2ebb2a167200f80607b6440fc2d2381d2af98c37[m
+Author: ned-rev <denverordinante@gmail.com>
+Date:   Tue Nov 22 00:53:41 2022 +0800
+
+    declutter
+
+[33mcommit 09f379a75aa50713a0fae41c639e916213b9f47f[m
+Author: ned-rev <denverordinante@gmail.com>
+Date:   Tue Nov 22 00:47:54 2022 +0800
+
+    updates again
+
+[33mcommit 7556b484cc9287b6f4e1743ecdf3b447b9cfb3ef[m
+Author: ned-rev <denverordinante@gmail.com>
+Date:   Tue Nov 22 00:45:57 2022 +0800
+
+    updates again
+
+[33mcommit 2d885cdd321940887e2103579cb12d5c84a26033[m
+Author: ned-rev <denverordinante@gmail.com>
+Date:   Mon Nov 21 22:27:04 2022 +0800
+
+    frontend update
+
+[33mcommit c6c4be632ef3776537a17d5fabb83e88ae038de9[m
+Author: ned-rev <denverordinante@gmail.com>
+Date:   Mon Nov 21 14:41:42 2022 +0800
+
+    reupload
+
+[33mcommit 7dd39df039fecd05a841c5b8da1d9988f352eb50[m
+Merge: afd3d1e c86f533
+Author: ned-rev <denverordinante@gmail.com>
+Date:   Mon Nov 21 14:27:13 2022 +0800
+
+    Merge branch 'master' of https://github.com/topet22/api
+
+[33mcommit c86f533d44ad97483e8e0be6cd3ea047465ea6f5[m
+Author: topet22 <gineskris22@gmail.com>
+Date:   Mon Nov 21 14:12:40 2022 +0800
+
+    updated files
+
+[33mcommit afd3d1e6e9f2a0a2d952fc1ad656ebc2ebbe0a30[m
+Author: ned-rev <denverordinante@gmail.com>
+Date:   Mon Nov 21 10:51:18 2022 +0700
+
+    updates on api
+
+[33mcommit 83c2b111629568279b3d510ea2229ed4407b314c[m
+Author: ned-rev <denverordinante@gmail.com>
+Date:   Mon Nov 21 10:49:47 2022 +0700
+
+    updated jquery
+
+[33mcommit d9b90c1bcdd40a0b54897a0c98929fa00ea73b52[m
+Author: ned-rev <denverordinante@gmail.com>
+Date:   Mon Nov 21 10:46:23 2022 +0700
+
+    updated jquery crud
+
+[33mcommit 2ac59676d865f94335a3d8c51f4f76f4173b5bc4[m
+Author: ned-rev <denverordinante@gmail.com>
+Date:   Mon Nov 21 10:42:18 2022 +0700
+
+    updated jquery script by records team
+
+[33mcommit ec6f17c8fd6b62d470b843ac6e34b0ac49b27951[m
+Author: ned-rev <denverordinante@gmail.com>
+Date:   Mon Nov 21 01:13:59 2022 +0800
+
+    api done
+
+[33mcommit 962cda3520850c6bc8430828b42186c53d5dbd09[m
+Author: ned-rev <denverordinante@gmail.com>
+Date:   Mon Nov 21 01:07:17 2022 +0800
+
+    API Done
+
+[33mcommit 93cc65fd4539fbe525eb30717d5619d79ef9d1a0[m
+Author: ned-rev <denverordinante@gmail.com>
+Date:   Mon Nov 21 01:02:07 2022 +0800
+
+    API Done 2
+
+[33mcommit a063068d7446ce0decd7e51dcac0a660b64101c4[m
+Author: ned-rev <denverordinante@gmail.com>
+Date:   Mon Nov 21 00:43:37 2022 +0800
+
+    API DONE 2
+
+[33mcommit 0ee2fda8384766302ab8bb6d2362971393358ad5[m
+Author: ned-rev <denverordinante@gmail.com>
+Date:   Mon Nov 21 00:40:08 2022 +0800
+
+    API DONE 2
+
+[33mcommit edd4869b24c62fcbb77644c2999410db9e308984[m
+Author: ned-rev <denverordinante@gmail.com>
+Date:   Mon Nov 21 00:03:14 2022 +0800
+
+    updated done API
+
+[33mcommit b21c40f9b10406616584bde69400974db281c71e[m
+Author: JPumares024 <pumaresjomar0824@gmail.com>
+Date:   Sun Nov 20 23:40:14 2022 +0800
+
+    DONE API
+
+[33mcommit 0b136d69564250b8389de3e5393b64c09628ced6[m
+Author: JPumares024 <pumaresjomar0824@gmail.com>
+Date:   Sun Nov 20 23:38:11 2022 +0800
+
+    DONE API
+
+[33mcommit 8151548ac5661896652890d944d9b000397bdb15[m
+Author: ned-rev <denverordinante@gmail.com>
+Date:   Sun Nov 20 23:07:46 2022 +0800
+
+    active
+
+[33mcommit e207b272ee11ed9b03d868194bd012e02b3850c5[m
+Author: ned-rev <denverordinante@gmail.com>
+Date:   Sat Nov 19 23:53:58 2022 +0800
+
+    API DONE HEHE
+
+[33mcommit f4df6dc9a407892784d2846e89832d64a0b580dc[m
+Author: ned-rev <denverordinante@gmail.com>
+Date:   Sat Nov 19 22:52:31 2022 +0800
+
+    API CRUD Done
+
+[33mcommit 154d3ed71007d64b084a80fcb62878f40625d7b9[m
+Author: ned-rev <denverordinante@gmail.com>
+Date:   Sat Nov 19 16:47:26 2022 +0800
+
+    updates
+
+[33mcommit 17dab2245f3410d23d9eeb128f6e6b6c3d9ec3c3[m
+Author: ned-rev <denverordinante@gmail.com>
+Date:   Sat Nov 19 16:37:30 2022 +0800
+
+    user registration api done
+
+[33mcommit 3e20e1a6d3f74293b105959dfdb3eabc114cd786[m
+Author: JPumares024 <pumaresjomar0824@gmail.com>
+Date:   Sat Nov 19 13:58:33 2022 +0800
+
+    Database file import niyo na lng sa sqlyog niyo
+
+[33mcommit d4ce2b13de7f784d3062b91b11321884ec621657[m
+Author: JPumares024 <pumaresjomar0824@gmail.com>
+Date:   Sat Nov 19 13:52:57 2022 +0800
+
+    .
+
+[33mcommit 53a4c4ea68ff11c0dee820eeb21a57b4f5498eb8[m
+Author: JPumares024 <pumaresjomar0824@gmail.com>
+Date:   Sat Nov 19 11:07:03 2022 +0800
+
+    Try pushing commit
+
+[33mcommit 206400c6ee8cb82627232f8b52fba80613dd39c7[m
+Author: topets22 <gineskris22@gmail.com>
+Date:   Thu Nov 17 00:46:39 2022 +0800
+
+    update api please do your part TY
+
+[33mcommit 551a9d1c5b88c748cfeae676a701f2b0729d0a28[m
+Author: topets22 <gineskris22@gmail.com>
+Date:   Tue Nov 15 23:57:45 2022 +0800
+
+    upload api
