@@ -62,7 +62,7 @@ Response
         "data"      :  null
     }
 ```
-## 4. /docfileupload
+## 4./docfileupload
 This API is used to store the document file in the dms database
 
 ```
