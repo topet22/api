@@ -6,9 +6,9 @@
 
 #   API endpoints for Documents Management System
 
-@@@ 1. /userreg
+######### 1. /userreg
 This API is used to store user account in the dms database
-
+############################
 ...
 Request
 ...
