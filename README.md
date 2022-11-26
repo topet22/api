@@ -69,7 +69,7 @@ This API is used to store the document file in the dms database
 Request
 ```
     {
-	            Test1.pdf	
+	            "Test1.pdf"	
     }
 ```
 Response
