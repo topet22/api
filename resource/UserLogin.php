@@ -1,91 +1,97 @@
-<?php 
-   session_start();
-   if (!isset($_SESSION['username']) && !isset($_SESSION['id'])) {   ?>
-
-
-
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="utf-8" />
-        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-        <title>Document Tracking System - Login</title>
-        <link href="css/styles.css" rel="stylesheet" />
-        <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
-    </head>
-    <body class="bg-primary">
-        <div id="layoutAuthentication">
-            <div id="layoutAuthentication_content">
-                <main>
-                    <div class="container">
-                        <div class="row justify-content-center">
-                            <div class="col-lg-5">
-                                <div class="card shadow-lg border-0 rounded-lg mt-5">
-                                    <div class="card-header"><h3 class="text-center font-weight-light my-4">Login</h3></div>
-                                    <div class="card-body">
-
-                                    <form role="form" action="php/check-login.php" method="post" >
-                                         <?php if (isset($_GET['error'])) { ?>
-      	                                 <div class="alert alert-danger" role="alert">
-				                         <?=$_GET['error']?>
-                                         <?php } ?>
-                                            <div class="form-floating mb-3">
-                                                <input class="form-control" class="form-control" name="email" id="email" placeholder="name@example.com" />
-                                                <label for="inputEmail">email</label>
-                                            </div>
-                                            <div class="form-floating mb-3">
-                                                <input class="form-control"  name="password" class="form-control" id="password" />
-                                                <label for="inputPassword">Password</label>
-                                            </div>
-                                            <div class="form-floating mb-3">
-                                            <br><br>
-                                            <label class="form-label">Select User Type:</label>
-                                            
-                                            <select name="role" aria-label="Default select example">
-                                            <option selected value="user">User</option>
-                                            <option value="admin">Admin</option>
-                                            </select>
-                                            </div>
-
-                                            <div class="form-check mb-3">
-                                                <input class="form-check-input" id="inputRememberPassword" type="checkbox" value="" />
-                                                <label class="form-check-label" for="inputRememberPassword">Remember Password</label>
-                                            </div>
-                                            <div class="d-flex align-items-center justify-content-between mt-4 mb-0">
-                                                <a class="small" href="password.html">Forgot Password?</a>
-                                                <button type="submit" href="index.html">Login</button>
-                                            </div>
-                                        </form>
-                                    </div>
-                                    <div class="card-footer text-center py-3">
-                                        <div class="small"><a href="register.html">Need an account? Sign up!</a></div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </main>
+ 
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Login Page</title>
+</head>
+ 
+<body>
+    <form action="validate.php" method="post">
+        <div class="login-box">
+            <h1>Login</h1>
+ 
+            <div class="textbox">
+                <i class="fa fa-user" aria-hidden="true"></i>
+                <input type="text" placeholder="Username"
+                         name="username" value="">
             </div>
-            <div id="layoutAuthentication_footer">
-                <footer class="py-4 bg-light mt-auto">
-                    <div class="container-fluid px-4">
-                        <div class="d-flex align-items-center justify-content-between small">
-                            <div class="text-muted">Copyright &copy; Document Tracking System 2022</div>
-                            <div>
-                                <a href="#">Privacy Policy</a>
-                                &middot;
-                                <a href="#">Terms &amp; Conditions</a>
-                            </div>
-                        </div>
-                    </div>
-                </footer>
+ 
+            <div class="textbox">
+                <i class="fa fa-lock" aria-hidden="true"></i>
+                <input type="password" placeholder="Password"
+                         name="password" value="">
             </div>
+ 
+            <input class="button" type="submit"
+                     name="login" value="Sign In">
         </div>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
-        <script src="js/scripts.js"></script>
-    </body>
+    </form>
+<style>
+    body {
+	margin: 0;
+	padding: 0;
+	font-family: sans-serif;
+	background: url() no-repeat;
+	background-size: cover;
+}
+
+.login-box {
+	width: 280px;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	color: #191970;
+}
+
+.login-box h1 {
+	float: left;
+	font-size: 40px;
+	border-bottom: 4px solid #191970;
+	margin-bottom: 50px;
+	padding: 13px;
+}
+
+.textbox {
+	width: 100%;
+	overflow: hidden;
+	font-size: 20px;
+	padding: 8px 0;
+	margin: 8px 0;
+	border-bottom: 1px solid #191970;
+}
+
+.fa {
+	width: px;
+	float: left;
+	text-align: center;
+}
+
+.textbox input {
+	border: none;
+	outline: none;
+	background: none;
+	font-size: 18px;
+	float: left;
+	margin: 0 10px;
+}
+
+.button {
+	width: 100%;
+	padding: 8px;
+	color: #ffffff;
+	background: none #191970;
+	border: none;
+	border-radius: 6px;
+	font-size: 18px;
+	cursor: pointer;
+	margin: 12px 0;
+}
+
+</style>
+</body>
 </html>
-<?php }else{
-	header("Location: home.php");
-} ?>
