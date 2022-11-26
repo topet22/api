@@ -1,8 +1,0 @@
-user:
-user@gmail.com
-1234
-
-
-admin:
-admin@gmail.com
-1234
