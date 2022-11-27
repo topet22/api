@@ -135,8 +135,10 @@ $app->post('/fileupload', function (Request $request, Response $response, array 
 });
 
 //endpoint upload file on directory
+/*
 $app->post('/docfileupload', function (Request $request, Response $response, array $args)
 {
+    include('phpqrcode/qrlib.php');
     $servername = "localhost";
 	$username = "root";
 	$password = "";
@@ -145,7 +147,7 @@ $app->post('/docfileupload', function (Request $request, Response $response, arr
 
 
 
-	/* Get the name of the uploaded file */
+
 	$document_TITLE = $_POST['document_TITLE'];
 	$filename = $_FILES['document_FILE']['name'];
 
@@ -154,7 +156,7 @@ $app->post('/docfileupload', function (Request $request, Response $response, arr
 	$true = 1;
 	$false = 0;
 
-	/* Choose where to save the uploaded file */
+
     $path = "http:/api/uploads/";
     $location = "../uploads/";
 
@@ -170,6 +172,14 @@ $app->post('/docfileupload', function (Request $request, Response $response, arr
       $targetFilePath2 = $location . $newfilename;  
 	  $fileType = pathinfo($targetFilePath2, PATHINFO_EXTENSION); 
 	  
+      $tempDir = "qrcode/"; 
+      $codeContents = $targetFilePath; 
+      $qrfileName = 'someqrcode.png'; 
+      $pngAbsoluteFilePath = $tempDir.$qrfileName; 
+      $urlRelativeFilePath = $tempDir.$qrfileName; 
+      if (!file_exists($pngAbsoluteFilePath)) { 
+          QRcode::png($codeContents, $pngAbsoluteFilePath); 
+      }
 	  
 
 	  $uploadStatus = 0; 
@@ -197,7 +207,7 @@ $app->post('/docfileupload', function (Request $request, Response $response, arr
 		}  
 		mysqli_close($conn);
 	} 
-});
+});*/
 
 
 //endpoint delete file upload

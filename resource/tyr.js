@@ -26,7 +26,7 @@ $(document).ready(function() {
 
         $.ajax(
             {
-            url:"http://www.localhost/api/public/docfileupload",
+            url:"http://localhost/api/resource/phpforfileandqr/docfileupload.php",
             method:'POST',
             data:new FormData(this),
             contentType:false,
