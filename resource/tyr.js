@@ -60,7 +60,7 @@ $(document).ready(function() {
 
         $.ajax(
             {
-            url:"http://www.localhost/api/public/updatedocfileupload",
+            url:"http://localhost/api/resource/phpforfileandqr/updatedocfileupload.php",
             method:'POST',
             data:new FormData(this),
             contentType:false,

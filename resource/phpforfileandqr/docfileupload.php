@@ -43,6 +43,7 @@ include('phpqrcode/qrlib.php');
           QRcode::png($codeContents, $pngAbsoluteFilePath); 
       }
 	  
+	  $qrfilepath = 'http:/api/resource/phpforfileandqr/qrcode/'.$qrfileName;
 
 	  $uploadStatus = 0; 
 	  if(!empty($_FILES["document_FILE"]["name"])){ 
@@ -57,7 +58,9 @@ include('phpqrcode/qrlib.php');
 		} 
 		} 
 
-        $sql = "UPDATE documents set document_FILEPATH = '". $targetFilePath ."', document_FILE= '". $newfilename ."' where document_TITLE='". $document_TITLE ."'";
+		$qrfile = $document_TITLE.".png"; 
+
+		$sql = "UPDATE documents set document_FILEPATH = '". $targetFilePath ."', document_FILE= '". $newfilename ."', doc_FILEPATH = '". $qrfilepath ."', qr_name = '". $qrfile ."' where document_TITLE='". $document_TITLE ."'";
 		
         if($uploadStatus == 1){	
 		if (mysqli_query($conn, $sql)) {

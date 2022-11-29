@@ -8,44 +8,6 @@ $app = new \Slim\App;
 
 //dones
 
-//endpoint user registration
-$app->post('/userreg', function (Request $request, Response $response, array $args)
-{
-    $data=json_decode($request->getBody());
-    $name =$data->name ;
-    $uname =$data->username ;
-    $pword = $data->password ;
-    //Database
-    $servername = "localhost";
-    $username = "root";
-    $password = "";
-    $dbname = "dms";
-    try {
-    
-    $conn = new PDO("mysql:host=$servername;dbname=$dbname",
-    
-    $username, $password);
-    
-    // set the PDO error mode to exception
-    $conn->setAttribute(PDO::ATTR_ERRMODE,
-    
-    PDO::ERRMODE_EXCEPTION);
-    
-    $sql = "INSERT INTO user_account (uname, username, passkey)
-    VALUES ('". $name ."','". $uname ."','". $pword ."')";
-    // use exec() because no results are returned
-    $conn->exec($sql);
-    $response->getBody()->write(json_encode(array("status"=>"success","data"=>null)));
-    
-    } catch(PDOException $e){
-    $response->getBody()->write(json_encode(array("status"=>"error",
-    "message"=>$e->getMessage())));
-    }
-    $conn = null;
-});
-
-
-
 // Endpoint for login user
 $app->post('/loginUser', function (Request $request, Response $response, array $args)
     {
@@ -134,82 +96,6 @@ $app->post('/fileupload', function (Request $request, Response $response, array 
     $conn = null;
 });
 
-//endpoint upload file on directory
-/*
-$app->post('/docfileupload', function (Request $request, Response $response, array $args)
-{
-    include('phpqrcode/qrlib.php');
-    $servername = "localhost";
-	$username = "root";
-	$password = "";
-	$db="dms";
-	$conn = mysqli_connect($servername, $username, $password,$db);
-
-
-
-
-	$document_TITLE = $_POST['document_TITLE'];
-	$filename = $_FILES['document_FILE']['name'];
-
-	
-	
-	$true = 1;
-	$false = 0;
-
-
-    $path = "http:/api/uploads/";
-    $location = "../uploads/";
-
-	$allowTypes = array('pdf'); 
-
-
-
-	  // File path config
-	  
-	  $temp = explode(".", $_FILES["document_FILE"]["name"]);
-	  $newfilename = $document_TITLE . '.' . end($temp);
-	  $targetFilePath = $path . $newfilename;
-      $targetFilePath2 = $location . $newfilename;  
-	  $fileType = pathinfo($targetFilePath2, PATHINFO_EXTENSION); 
-	  
-      $tempDir = "qrcode/"; 
-      $codeContents = $targetFilePath; 
-      $qrfileName = 'someqrcode.png'; 
-      $pngAbsoluteFilePath = $tempDir.$qrfileName; 
-      $urlRelativeFilePath = $tempDir.$qrfileName; 
-      if (!file_exists($pngAbsoluteFilePath)) { 
-          QRcode::png($codeContents, $pngAbsoluteFilePath); 
-      }
-	  
-
-	  $uploadStatus = 0; 
-	  if(!empty($_FILES["document_FILE"]["name"])){ 
-		// Allow certain file formats to upload 
-		if(in_array($fileType, $allowTypes)){ 
-			$uploadStatus = 1; 
-		}
-		else
-		{ 
-			$uploadStatus = 0; 
-			echo $false;
-		} 
-		} 
-
-        $sql = "UPDATE documents set document_FILEPATH = '". $targetFilePath ."', document_FILE= '". $newfilename ."' where document_TITLE='". $document_TITLE ."'";
-		
-        if($uploadStatus == 1){	
-		if (mysqli_query($conn, $sql)) {
-			move_uploaded_file($_FILES["document_FILE"]["tmp_name"], $targetFilePath2);
-			echo $true;
-		} 
-		else {
-			echo $false;
-		}  
-		mysqli_close($conn);
-	} 
-});*/
-
-
 //endpoint delete file upload
 $app->post('/deletefileupload', function (Request $request, Response $response, array $args)
 {
@@ -238,6 +124,9 @@ $app->post('/deletefileupload', function (Request $request, Response $response, 
       $filenametodelete = $row["document_FILE"];
       $filetodelete = "../uploads/" . $filenametodelete;
       unlink($filetodelete);
+      $qrtodelete = $row["qr_name"];
+      $qrfiletodelete = "../resource/phpforfileandqr/qrcode/" . $qrtodelete;
+      unlink($qrfiletodelete);
     }
     $sql = "DELETE FROM documents where document_ID='". $document_ID ."'";
     $conn->exec($sql);
@@ -289,75 +178,6 @@ $app->post('/updatefileupload', function (Request $request, Response $response, 
     $conn = null;
 });
 
-//endpoint update file on directory
-$app->post('/updatedocfileupload', function (Request $request, Response $response, array $args)
-{
-    $servername = "localhost";
-	$username = "root";
-	$password = "";
-	$db="dms";
-	$conn = mysqli_connect($servername, $username, $password,$db);
-
-	/* Get the name of the uploaded file */
-    $document_ID = $_POST['document_ID'];
-	$document_TITLE = $_POST['document_TITLE'];
-	$filename = $_FILES['document_FILE']['name'];
-	
-    $true = 1;
-	$false = 0;
-
-	/* Choose where to save the uploaded file */
-    $path = "http:/api/uploads/";
-    $location = "../uploads/";
-
-	$allowTypes = array('pdf'); 
-
-    
-
-	  // File path config
-	  
-	  $temp = explode(".", $_FILES["document_FILE"]["name"]);
-	  $newfilename = $document_TITLE . '.' . end($temp);
-	  $targetFilePath = $path . $newfilename;
-      $targetFilePath2 = $location . $newfilename;  
-	  $fileType = pathinfo($targetFilePath2, PATHINFO_EXTENSION); 
-	  
-      $sql2 = "SELECT * FROM documents where document_ID='". $document_ID ."'";
-      $filesql = mysqli_query($conn,$sql2);
-     
-      while($row = mysqli_fetch_array($filesql)){
-        $filenametodelete = $row["document_FILE"];
-        $filetodelete = "../uploads/" . $filenametodelete;
-        unlink($filetodelete);
-      }
-
-	  $uploadStatus = 0; 
-	  if(!empty($_FILES["document_FILE"]["name"])){ 
-		// Allow certain file formats to upload 
-		if(in_array($fileType, $allowTypes)){ 
-			$uploadStatus = 1; 
-		}
-		else
-		{ 
-			$uploadStatus = 0; 
-			echo $false;
-		} 
-		} 
-
-        $sql = "UPDATE documents set document_FILEPATH = '". $targetFilePath ."', document_FILE= '". $newfilename ."' where document_TITLE='". $document_TITLE ."'";
-		
-        if($uploadStatus == 1){	
-		if (mysqli_query($conn, $sql)) {
-			move_uploaded_file($_FILES["document_FILE"]["tmp_name"], $targetFilePath2);
-			echo $true;
-		} 
-		else {
-			echo $false;
-		}  
-		mysqli_close($conn);
-	} 
-});
-
 //endpoint search file upload
 $app->post('/searchfileupload', function (Request $request, Response $response, array
 		$args) {
@@ -381,7 +201,7 @@ $app->post('/searchfileupload', function (Request $request, Response $response, 
 		if ($result->num_rows > 0) {
 		$data=array();
 		while($row = $result->fetch_assoc()) {
-			array_push($data,array("document_ID"=>$row["document_ID"],"document_TITLE"=>$row["document_TITLE"] ,"document_TYPE"=>$row["document_TYPE"],"document_ORIGIN"=>$row["document_ORIGIN"],"date_received"=>$row["date_received"] ,"document_DESTINATION"=>$row["document_DESTINATION"],"tags"=>$row["tags"] ,));
+			array_push($data,array("document_ID"=>$row["document_ID"],"document_TITLE"=>$row["document_TITLE"] ,"document_TYPE"=>$row["document_TYPE"],"document_ORIGIN"=>$row["document_ORIGIN"],"date_received"=>$row["date_received"] ,"document_DESTINATION"=>$row["document_DESTINATION"],"tags"=>$row["tags"] ,"document_FILEPATH"=>$row["document_FILEPATH"], "document_FILE"=>$row["document_FILE"],"doc_FILEPATH"=>$row["doc_FILEPATH"]));
 
 		}
 		$data_body=array("status"=>"success","data"=>$data);
@@ -419,7 +239,7 @@ $app->post('/displaydata', function (Request $request, Response $response, array
         if ($result->num_rows > 0) {
             $data=array();
             while($row = $result->fetch_assoc()) {
-                array_push($data,array("document_ID"=>$row["document_ID"],"document_TITLE"=>$row["document_TITLE"],"document_TYPE"=>$row["document_TYPE"] ,"document_ORIGIN"=>$row["document_ORIGIN"],"date_received"=>$row["date_received"] ,"document_DESTINATION"=>$row["document_DESTINATION"],"tags"=>$row["tags"] ,"document_FILE"=>$row["document_FILE"],"document_FILEPATH"=>$row["document_FILEPATH"] ));
+                array_push($data,array("document_ID"=>$row["document_ID"],"document_TITLE"=>$row["document_TITLE"] ,"document_TYPE"=>$row["document_TYPE"],"document_ORIGIN"=>$row["document_ORIGIN"],"date_received"=>$row["date_received"] ,"document_DESTINATION"=>$row["document_DESTINATION"],"tags"=>$row["tags"] ,"document_FILEPATH"=>$row["document_FILEPATH"], "document_FILE"=>$row["document_FILE"],"doc_FILEPATH"=>$row["doc_FILEPATH"]));
     
             }
             $data_body=array("status"=>"success","data"=>$data);
