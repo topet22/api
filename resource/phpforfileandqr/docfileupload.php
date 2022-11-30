@@ -1,10 +1,10 @@
 <?php
 
 include('phpqrcode/qrlib.php');
-    $servername = "localhost";
-	$username = "root";
-	$password = "";
-	$db="dms";
+    $servername = "sql578.main-hosting.eu";
+	$username = "u475920781_Dts4c";
+	$password = "Dts4c2022";
+	$db="u475920781_Dts4c";
 	$conn = mysqli_connect($servername, $username, $password,$db);
 
 

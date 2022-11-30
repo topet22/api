@@ -11,7 +11,7 @@ $(document).ready(function() {
 		var tags=$("#tags").get(0).value;
         var extension = $('#document_FILE').val();
 
-        $.post("http://www.localhost/api/public/fileupload",
+        $.post("../public/fileupload",
         JSON.stringify({
             document_TITLE: document_TITLE,
             document_TYPE: document_TYPE,
@@ -60,7 +60,7 @@ $(document).ready(function() {
 
         $.ajax(
             {
-            url:"http://localhost/api/resource/phpforfileandqr/updatedocfileupload.php",
+            url:"http://api/resource/phpforfileandqr/updatedocfileupload.php",
             method:'POST',
             data:new FormData(this),
             contentType:false,
@@ -79,7 +79,7 @@ $(document).ready(function() {
             }
         );
 
-        $.post("http://www.localhost/api/public/updatefileupload",
+        $.post("../public/pdatefileupload",
         JSON.stringify({
             document_ID: document_ID,
             document_TITLE: document_TITLE,
@@ -97,7 +97,7 @@ $(document).ready(function() {
     $("#search").click(function(){
         document_ID=prompt("Enter Document ID");
         //endpoint
-        $.post("http://localhost/api/public/searchfileupload",
+        $.post("../public/searchfileupload",
         JSON.stringify(
         //payload
                       {
@@ -119,7 +119,7 @@ $(document).ready(function() {
     });
     
     $("#delete").click(function(){
-        $.post("http://localhost/api/public/deletefileupload",
+        $.post("../public/deletefileupload",
         JSON.stringify({
         document_ID:document_ID
         }),

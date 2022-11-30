@@ -1,6 +1,6 @@
 $(document).ready(function() {    
     //Display DataTable
-    $.post("http://localhost/api/public/displaydata",
+    $.post("../public/displaydata",
     function(data, status){
     var json=JSON.parse(data);
     var row="";
