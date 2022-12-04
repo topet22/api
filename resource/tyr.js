@@ -79,7 +79,7 @@ $(document).ready(function() {
             }
         );
 
-        $.post("../public/pdatefileupload",
+        $.post("../public/updatefileupload",
         JSON.stringify({
             document_ID: document_ID,
             document_TITLE: document_TITLE,
