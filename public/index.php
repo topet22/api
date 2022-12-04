@@ -68,10 +68,10 @@ $app->post('/fileupload', function (Request $request, Response $response, array 
     $tags = $data->tags ;
 
     //Database
-    $servername = "localhost";
-    $username = "root";
-    $password = "";
-    $dbname = "dms";
+    $servername = "sql578.main-hosting.eu";
+    $username = "u475920781_Dts4c";
+    $password = "Dts4c2022";
+    $dbname = "u475920781_Dts4c";
     try {
     
     $conn = new PDO("mysql:host=$servername;dbname=$dbname",
@@ -104,10 +104,10 @@ $app->post('/deletefileupload', function (Request $request, Response $response, 
     $document_ID =$data->document_ID ;
 
     //Database
-    $servername = "localhost";
-    $username = "root";
-    $password = "";
-    $dbname = "dms";
+    $servername = "sql578.main-hosting.eu";
+    $username = "u475920781_Dts4c";
+    $password = "Dts4c2022";
+    $dbname = "u475920781_Dts4c";;
     
     try {
     
@@ -154,10 +154,10 @@ $app->post('/updatefileupload', function (Request $request, Response $response, 
     $tags = $data->tags ;
 
     //Database
-    $servername = "localhost";
-    $username = "root";
-    $password = "";
-    $dbname = "dms";
+    $servername = "sql578.main-hosting.eu";
+    $username = "u475920781_Dts4c";
+    $password = "Dts4c2022";
+    $dbname = "u475920781_Dts4c";
     
     try {
     
@@ -188,10 +188,10 @@ $app->post('/searchfileupload', function (Request $request, Response $response, 
 		$data=json_decode($request->getBody());
 		$document_ID =$data->document_ID;
 		//Database
-        $servername = "localhost";
-        $username = "root";
-        $password = "";
-        $dbname = "dms";
+        $servername = "sql578.main-hosting.eu";
+        $username = "u475920781_Dts4c";
+        $password = "Dts4c2022";
+        $dbname = "u475920781_Dts4c";
         
 		// Create connection
 		$conn = new mysqli($servername, $username, $password, $dbname);
@@ -227,10 +227,10 @@ $app->post('/searchfileupload', function (Request $request, Response $response, 
 $app->post('/displaydata', function (Request $request, Response $response, array $args)
         {
         //Database
-        $servername = "localhost";
-        $username = "root";
-        $password = "";
-        $dbname = "dms";
+        $servername = "sql578.main-hosting.eu";
+        $username = "u475920781_Dts4c";
+        $password = "Dts4c2022";
+        $dbname = "u475920781_Dts4c";
         
         // Create connection
         $conn = new mysqli($servername, $username, $password, $dbname);

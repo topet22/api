@@ -1,11 +1,13 @@
 <?php
 
 include('phpqrcode/qrlib.php');
-    $servername = "localhost";
-	$username = "root";
-	$password = "";
-	$db="dms";
+    $servername = "sql578.main-hosting.eu";
+	$username = "u475920781_Dts4c";
+	$password = "Dts4c2022";
+	$db="u475920781_Dts4c";
 	$conn = mysqli_connect($servername, $username, $password,$db);
+
+
 
 	/* Get the name of the uploaded file */
 	$document_TITLE = $_POST['document_TITLE'];
@@ -41,7 +43,7 @@ include('phpqrcode/qrlib.php');
           QRcode::png($codeContents, $pngAbsoluteFilePath); 
       }
 	  
-	  $qrfilepath = 'http://localhost/api/resource/phpforfileandqr/qrcode/'.$qrfileName;
+	  $qrfilepath = 'http:/api/resource/phpforfileandqr/qrcode/'.$qrfileName;
 
 	  $uploadStatus = 0; 
 	  if(!empty($_FILES["document_FILE"]["name"])){ 
